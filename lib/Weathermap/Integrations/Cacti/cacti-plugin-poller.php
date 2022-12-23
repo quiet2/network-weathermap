@@ -20,13 +20,13 @@ function weathermap_poller_output($rrdUpdateArray)
     // new version works with *either* a local_data_id or rrdfile in the weathermap_data table, and returns BOTH
 
     $stmt = $pdo->query(
-        "SELECT DISTINCT weathermap_data.id, weathermap_data.last_value, 
-		weathermap_data.last_time, weathermap_data.data_source_name, 
-		data_template_data.data_source_path, data_template_data.local_data_id, 
-		data_template_rrd.data_source_type_id 
-		FROM weathermap_data, data_template_data, data_template_rrd 
-		WHERE weathermap_data.local_data_id=data_template_data.local_data_id 
-		AND data_template_rrd.local_data_id=data_template_data.local_data_id 
+        "SELECT DISTINCT weathermap_data.id, weathermap_data.last_value,
+		weathermap_data.last_time, weathermap_data.data_source_name,
+		data_template_data.data_source_path, data_template_data.local_data_id,
+		data_template_rrd.data_source_type_id
+		FROM weathermap_data, data_template_data, data_template_rrd
+		WHERE weathermap_data.local_data_id=data_template_data.local_data_id
+		AND data_template_rrd.local_data_id=data_template_data.local_data_id
 		AND weathermap_data.local_data_id<>0"
     );
 
@@ -64,8 +64,10 @@ function weathermap_poller_output($rrdUpdateArray)
             );
         }
 
-        if (isset($rrdUpdateArray[$file]) && is_array($rrdUpdateArray[$file]) && isset($rrdUpdateArray[$file]['times']) && is_array($rrdUpdateArray[$file]['times']) && isset($rrdUpdateArray{$file}['times'][key($rrdUpdateArray[$file]['times'])]{$dsname})) {
-            $value = $rrdUpdateArray{$file}['times'][key($rrdUpdateArray[$file]['times'])]{$dsname};
+        if (isset($rrdUpdateArray[$file]) && is_array($rrdUpdateArray[$file]) && isset($rrdUpdateArray[$file]['times'])
+            && is_array($rrdUpdateArray[$file]['times']) && isset($rrdUpdateArray[$file]['times'][key($rrdUpdateArray[$file]['times'])][$dsname])
+        ) {
+            $value = $rrdUpdateArray[$file]['times'][key($rrdUpdateArray[$file]['times'])][$dsname];
             $time = key($rrdUpdateArray[$file]['times']);
             if ($logVerbosity >= POLLER_VERBOSITY_MEDIUM) {
                 \cacti_log("WM poller_output: Got one! $file:$dsname -> $time $value\n", true, "WEATHERMAP");
@@ -93,7 +95,7 @@ function weathermap_poller_output($rrdUpdateArray)
                     case 2: //COUNTER
                         if ($value >= $lastval) {
                             // Everything is normal
-                            $newvalue = $value - $lastval;
+                            $newvalue = intval($value) - intval($lastval);
                         } else {
                             // Possible overflow, see if its 32bit or 64bit
                             if ($lastval > 4294967295) {

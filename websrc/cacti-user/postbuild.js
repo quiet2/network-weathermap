@@ -8,14 +8,15 @@ var path = require('path');
 const src = './build/';
 const dest = '../../cacti-resources/user/';
 
-const targets = ["main.js", "main.css", "main.css.map", "main.js.map"];
+//const targets = ["main.js", "main.css", "main.css.map", "main.js.map"];
+const targets = ["main.js", "main.css"];
 
 
 //const target = "main.js";
 
 for (let target of targets) {
 
-    let file = require('./build/asset-manifest.json')[target];
+    let file = require('./build/asset-manifest.json')[target] ?? require('./build/asset-manifest.json')['files'][target];
     console.log(`${src}${file} => ${dest}${target}`);
 
     if (!fs.existsSync(dest)) {

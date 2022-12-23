@@ -414,11 +414,11 @@ class MapLink extends MapDataItem
         $textX = array_pop($points);
 
         if ($this->bwboxcolour->isRealColour()) {
-            imagefilledpolygon($imageRef, $points, 4, $this->bwboxcolour->gdAllocate($imageRef));
+            imagefilledpolygon($imageRef, $points, $this->bwboxcolour->gdAllocate($imageRef));
         }
 
         if ($this->bwoutlinecolour->isRealColour()) {
-            imagepolygon($imageRef, $points, 4, $this->bwoutlinecolour->gdAllocate($imageRef));
+            imagepolygon($imageRef, $points, $this->bwoutlinecolour->gdAllocate($imageRef));
         }
 
         $fontObject->drawImageString(

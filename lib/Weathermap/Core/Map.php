@@ -635,12 +635,12 @@ class Map extends MapBase
 
         switch ($which) {
             case 'MIN':
-                $stamp = strftime($this->minstamptext, $this->minimumDataTime);
+                $stamp = date($this->minstamptext, $this->minimumDataTime);
                 $posX = $this->mintimex;
                 $posY = $this->mintimey;
                 break;
             case 'MAX':
-                $stamp = strftime($this->maxstamptext, $this->maximumDataTime);
+                $stamp = date($this->maxstamptext, $this->maximumDataTime);
                 $posX = $this->maxtimex;
                 $posY = $this->maxtimey;
                 break;
@@ -679,7 +679,7 @@ class Map extends MapBase
         } else {
             $maptime = time();
         }
-        $this->datestamp = strftime($this->stamptext, $maptime);
+        $this->datestamp = date($this->stamptext, $maptime);
     }
 
 
@@ -1055,7 +1055,7 @@ class Map extends MapBase
             $this->thumbWidth = $this->width * $factor;
             $this->thumbHeight = $this->height * $factor;
 
-            $thumbImageRef = imagecreatetruecolor($this->thumbWidth, $this->thumbHeight);
+            $thumbImageRef = imagecreatetruecolor(intval($this->thumbWidth), intval($this->thumbHeight));
             imagecopyresampled(
                 $thumbImageRef,
                 $imageRef,
@@ -1063,10 +1063,10 @@ class Map extends MapBase
                 0,
                 0,
                 0,
-                $this->thumbWidth,
-                $this->thumbHeight,
-                $this->width,
-                $this->height
+                intval($this->thumbWidth),
+                intval($this->thumbHeight),
+                intval($this->width),
+                intval($this->height)
             );
             $result = imagepng($thumbImageRef, $thumbnailFileName);
             imagedestroy($thumbImageRef);
@@ -1725,9 +1725,9 @@ class Map extends MapBase
         $string = $keyword;
 
         for ($i = 0; $i < count($fieldnames); $i++) {
-            $string .= ' ' . $object1->{$fieldnames[$i]};
+            $string .= ' ' . $object1->$fieldnames[$i];
 
-            if ($object1->{$fieldnames[$i]} != $object2[$fieldnames[$i]]) {
+            if ($object1->$fieldnames[$i] != $object2[$fieldnames[$i]]) {
                 $write = true;
             }
         }

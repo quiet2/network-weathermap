@@ -10,14 +10,14 @@
     }
   ],
   "require": {
-    "php": ">=5.6.0",
+    "php": "^5.6|7.*|8.*",
     "ulrichsg/getopt-php": "~3",
     "monolog/monolog": "^1.0",
     "glopgar/monolog-timer-processor": "^0.1.1",
     "bramus/monolog-colored-line-formatter": "~2.0",
+    "wanfeiyy/dd": "^1.0",
     "ext-json": "*",
     "ext-pdo": "*",
-    "ext-posix": "*",
     "ext-gd": "*",
     "ext-snmp": "*"
   },
@@ -25,18 +25,18 @@
     "dealerdirect/phpcodesniffer-composer-installer": "*",
     "phpcompatibility/php-compatibility": "*",
     "phpunit/dbunit": "*",
-    "phpunit/phpunit": "~5",
+    "phpunit/phpunit": "^9.5",
     "phpmd/phpmd": "*",
     "sebastian/phpcpd": "*",
     "squizlabs/php_codesniffer": "*",
     "theseer/phpdox": "*",
     "codacy/coverage": "dev-master",
-    "phpunit/php-code-coverage": "~4",
+    "phpunit/php-code-coverage": "^9",
     "jakub-onderka/php-parallel-lint": "^0.9.2",
-    "johnkary/phpunit-speedtrap": "^1.1",
+    "johnkary/phpunit-speedtrap": "4.*",
     "lstrojny/phpunit-clever-and-smart": "^0.5.0",
-    "slevomat/coding-standard": "~4.0",
-    "phploc/phploc": "^4.0"
+    "slevomat/coding-standard": "^8",
+    "phploc/phploc": "^7"
   },
   "autoload": {
     "psr-4": {

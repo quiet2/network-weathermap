@@ -272,7 +272,12 @@ class LinkGeometry
             throw new WeathermapInternalFail('DrawingEmptySpline');
         }
 
-        if (($this->arrowWidths[IN] + $this->arrowWidths[OUT] * 1.2) > $this->curvePoints->totalDistance()) {
+        $size = 0;
+        if (is_array($this->arrowWidths)) {
+            $size = $this->arrowWidths[IN]??0 + $this->arrowWidths[OUT]??0 * 1.2;
+        }
+
+        if ($size > $this->curvePoints->totalDistance()) {
             MapUtility::warn('Skipping too-short link [WMWARN50]');
 
             return;
@@ -290,7 +295,6 @@ class LinkGeometry
                 imagefilledpolygon(
                     $gdImage,
                     $polyline,
-                    count($polyline) / 2,
                     $this->fillColours[$direction]->gdAllocate($gdImage)
                 );
             } else {
@@ -298,7 +302,7 @@ class LinkGeometry
             }
 
             if (!$this->outlineColour->isNone()) {
-                imagepolygon($gdImage, $polyline, count($polyline) / 2, $this->outlineColour->gdAllocate($gdImage));
+                imagepolygon($gdImage, $polyline, $this->outlineColour->gdAllocate($gdImage));
             } else {
                 MapUtility::debug("Not drawing $linkName ($direction) outline because there is no outline colour\n");
             }

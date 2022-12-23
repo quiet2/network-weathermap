@@ -1,5 +1,12 @@
 # PHP Network Weathermap 1.0.0 (dev)
 
+## Install manual (2022-12-23)
+1) composer update
+2) bower install
+3) cd websrc/cacti-user; yarn add react-scripts; yarn run build
+4) cd websrc/cacti-mgmt; yarn add react-scripts; yarn run build
+5) Enable plugin Weathermap from /plugins.php
+
 ## Current Status (2018-03-02)
 
 I decided it would be useful to add this section to the top of the README, while things are moving around a lot. Here
@@ -31,7 +38,7 @@ plugin does, too.
 
 * __CLI__ - should be working OK. Rewritten to avoid PEAR dependency. There's also a `weathermap-new` which needs testing, but is intended to replace the old `weathermap` (all the business is in a class, not the script)
 
-* __Editor__ - should be working OK. Re-implemented class/template-based version of editor (same UI). 
+* __Editor__ - should be working OK. Re-implemented class/template-based version of editor (same UI).
 
 * __Cacti 0.8 Plugin__ - broken UI, working poller. Code has all been moved, poller run, UI not tested.
 
@@ -76,11 +83,11 @@ If you *aren't* intending to do any development, run the tests, or contribute pa
       * SET Settings editor for global, group and map
       * Access editor for (group) and map
       * App Settings editor (for Cacti/host-app settings)
-         
+
    * User
-      * ~~Show Thumbnails~~      
+      * ~~Show Thumbnails~~
       * ~~Show full size maps~~
-      * "Overlib" replacement for popup graphs      
+      * "Overlib" replacement for popup graphs
       * Cycle mode
       * Cycle mode fullscreen
 
@@ -103,16 +110,16 @@ If you *aren't* intending to do any development, run the tests, or contribute pa
     * Poller - a single runMaps() function currently does almost everything. Replace with Poller class for general environment setup, which
     asks MapManager for the maps to run. ~~Use a MapRuntime class per-map to contain all the knowledge
     needed to run that map.~~
-        
+
 * Dependency Injection - there's some ugly stuff especially with logging and global variables. Switch to a real logger (planning on monolog), wrapped
 in a simple class to manage things like muting certain messages, and switching between debug and normal logging. Then find
 a better way (DI container?) to have that one logger object shared between the places that want to use it. This also has some
 side benefits - monolog can log to lots of destinations (syslog etc), in lots of formats (json, text, pretty coloured text), and
-can automatically do things like tag on memory usage and function call info for debug logs. 
+can automatically do things like tag on memory usage and function call info for debug logs.
 
-* Move as much generic database-related stuff out of the Cacti plugin and into MapManager - MapManager is testable, whereas 
-the Cacti plugin is not (easily). Also, MapManager is currently a literal collection of every query that was in the 0.8.8 plugin, 
-which turns out to be quite a few. Breaking that down into global, map, and group objects would be a good thing.  
+* Move as much generic database-related stuff out of the Cacti plugin and into MapManager - MapManager is testable, whereas
+the Cacti plugin is not (easily). Also, MapManager is currently a literal collection of every query that was in the 0.8.8 plugin,
+which turns out to be quite a few. Breaking that down into global, map, and group objects would be a good thing.
 
 * ~~Make an abstraction layer for things like `read_config_option` in the UI, so it doesn't depend on Cacti being underneath. When someone wants to make a plugin/integration for a new
 application, it'll be a lot 'thinner' this way, too. This is done as Weathermap\Integration\ApplicationInterface~~
@@ -121,17 +128,17 @@ application, it'll be a lot 'thinner' this way, too. This is done as Weathermap\
 
     1. A container for the nodes, links, & scales, and some management functions used by the editor mainly to access them (addNode, getNode etc). Also
     processString, which lives here because it looks inside everything else (*does it still?*).
-    
+
     2. For no particular reason, the home of title and timestamps (which should be their own objects with their draw() method)
-    
+
     3. A manager for the map drawing and data collection process - there could definitely be a DataManager for
     readData(), preprocessTargets() etc.
-    
+
     4. Global data for the map
-    
+
     5. The imagemap and z-layer information, which are just another couple of managed lists used for draw.
-    
-    6. Some functions to draw overlays that are only used by the editor. There should be some mechanism to 
+
+    6. Some functions to draw overlays that are only used by the editor. There should be some mechanism to
     provide a delegate to draw these, supplied by the editor.
 
 * Create a MapTitle and MapTimestamp class (from #2 above)
@@ -162,12 +169,12 @@ See LICENSE for the license under which php-weathermap is released.
 There is much more information, tutorials and updates available at:
     http://www.network-weathermap.com/
 
-## Project Admin 
+## Project Admin
 
 For news and updates, see http://www.network-weathermap.com/
 (also twitter @netweathermap and Facebook)
 
-For issue tracking and bug reports use the Github issue tracker: https://github.com/howardjones/network-weathermap/issues  
+For issue tracking and bug reports use the Github issue tracker: https://github.com/howardjones/network-weathermap/issues
 
 I'm trying managing feature requests with FeatHub. You can add features here, and vote for them too:
 
@@ -191,10 +198,10 @@ jquery-latest.min.js is the jQuery javascript library - written by John Resig an
 http://docs.jquery.com/Licensing
 
 Some of the icons used in the editor, and also supplied in the images/ folder are
-from the excellent Fam Fam Fam Silk icon collection by Mark James: 
+from the excellent Fam Fam Fam Silk icon collection by Mark James:
    http://www.famfamfam.com/lab/icons/silk/
 These are released under the Creative Commons Attribution 2.5 License
    http://creativecommons.org/licenses/by/2.5/
 
 Other libraries in the vendor/ directory are provided by third-parties. `composer info` will
-provide licensing information per component for php components. 
+provide licensing information per component for php components.

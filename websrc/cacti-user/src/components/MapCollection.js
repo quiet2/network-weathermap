@@ -13,7 +13,7 @@ const MapCollection = (props) => {
     )
   } else {
 
-    const my_maps = props.maps.filter(map => map.group_id === props.group_id || props.group_id === "0");
+    const my_maps = props.maps; //.filter(map => map.group_id === props.group_id || props.group_id === "0");
     let maps = [];
     if (props.settings.page_style === 'thumbs') {
       maps = my_maps.map((item, index) => {

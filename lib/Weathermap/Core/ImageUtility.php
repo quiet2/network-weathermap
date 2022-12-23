@@ -16,7 +16,7 @@ class ImageUtility
      */
     public static function createTransparentImage($boxWidth, $boxHeight)
     {
-        $gdScaleImage = imagecreatetruecolor($boxWidth, $boxHeight);
+        $gdScaleImage = imagecreatetruecolor(intval($boxWidth), intval($boxHeight));
 
         // Start with a transparent box, in case the fill or outline colour is 'none'
         imagesavealpha($gdScaleImage, true);

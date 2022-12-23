@@ -150,9 +150,9 @@ class ImageLoader
             if (array_key_exists($key, $this->cache)) {
                 MapUtility::debug("Cache hit! for $key\n");
                 $cacheImage = $this->cache[$key];
-                MapUtility::debug("From cache: $cacheImage\n");
+                MapUtility::debug("From cache: $key\n");
                 $newImage = $this->imageduplicate($cacheImage);
-                MapUtility::debug("$newImage\n");
+                MapUtility::debug("return image\n");
             } else {
                 MapUtility::debug("Cache miss - processing\n");
 
@@ -190,7 +190,7 @@ class ImageLoader
                 }
             }
             if (!is_null($newImage) && $this->isCacheable($width, $height)) {
-                MapUtility::debug("Caching $key $newImage\n");
+                MapUtility::debug("Caching $key\n");
                 $this->cache[$key] = $newImage;
                 $resultImage = $this->imageduplicate($newImage);
             } else {
@@ -200,7 +200,7 @@ class ImageLoader
             MapUtility::warn("Image file $filename is unreadable. Check permissions. [WMIMG05]\n");
         }
 
-        MapUtility::debug("Returning $resultImage\n");
+        MapUtility::debug("Returning Image\n");
         return $resultImage;
     }
 

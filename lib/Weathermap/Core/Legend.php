@@ -322,17 +322,17 @@ class Legend extends MapItem
 
         MapUtility::debug("Scale Box is %dx%d\n", $boxWidth + 1, $boxHeight + 1);
 
-        $gdScaleImage = ImageUtility::createTransparentImage($boxWidth + 1, $boxHeight + 1);
+        $gdScaleImage = ImageUtility::createTransparentImage(intval($boxWidth + 1), intval($boxHeight + 1));
 
         $bgColour = $this->keybgcolour;
         $outlineColour = $this->keyoutlinecolour;
 
         if ($bgColour->isRealColour()) {
-            imagefilledrectangle($gdScaleImage, 0, 0, $boxWidth, $boxHeight, $bgColour->gdAllocate($gdScaleImage));
+            imagefilledrectangle($gdScaleImage, 0, 0, intval($boxWidth), intval($boxHeight), $bgColour->gdAllocate($gdScaleImage));
         }
 
         if ($outlineColour->isRealColour()) {
-            imagerectangle($gdScaleImage, 0, 0, $boxWidth, $boxHeight, $outlineColour->gdAllocate($gdScaleImage));
+            imagerectangle($gdScaleImage, 0, 0, intval($boxWidth), intval($boxHeight), $outlineColour->gdAllocate($gdScaleImage));
         }
 
         $fontObject->drawImageString(
@@ -375,13 +375,13 @@ class Legend extends MapItem
                         $value = $fudgeFactor + $scaleEntry->bottom + ($n / $tileWidth) * ($scaleEntry->top - $scaleEntry->bottom);
                         list($entryColour,) = $this->scale->findScaleHit($value);
                         $gdColourRef = $entryColour->gdallocate($gdScaleImage);
-                        imagefilledrectangle($gdScaleImage, $x + $n, $y, $x + $n, $y + $tileHeight, $gdColourRef);
+                        imagefilledrectangle($gdScaleImage, intval($x + $n), intval($y), intval($x + $n), intval($y + $tileHeight), $gdColourRef);
                     }
                 } else {
                     // pick a value in the middle...
                     list($entryColour,) = $this->scale->findScaleHit($value);
                     $gdColourRef = $entryColour->gdallocate($gdScaleImage);
-                    imagefilledrectangle($gdScaleImage, $x, $y, $x + $tileWidth, $y + $tileHeight, $gdColourRef);
+                    imagefilledrectangle($gdScaleImage, intval($x), intval($y), intval($x + $tileWidth), intval($y + $tileHeight), $gdColourRef);
                 }
 
                 $fontObject->drawImageString(

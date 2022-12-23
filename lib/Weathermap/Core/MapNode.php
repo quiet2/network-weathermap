@@ -351,12 +351,12 @@ class MapNode extends MapDataItem
             imagecopy(
                 $nodeImageRef,
                 $iconImageRef,
-                $iconBox->topLeft->x,
-                $iconBox->topLeft->y,
+                intval($iconBox->topLeft->x),
+                intval($iconBox->topLeft->y),
                 0,
                 0,
-                imagesx($iconImageRef),
-                imagesy($iconImageRef)
+                intval(imagesx($iconImageRef)),
+                intval(imagesy($iconImageRef))
             );
             imagedestroy($iconImageRef);
         }
@@ -445,8 +445,8 @@ class MapNode extends MapDataItem
             imagecopy(
                 $imageRef,
                 $this->imageRef,
-                $this->x - $this->centreX,
-                $this->y - $this->centreY,
+                intval($this->x - $this->centreX),
+                intval($this->y - $this->centreY),
                 0,
                 0,
                 imagesx($this->imageRef),
@@ -853,10 +853,10 @@ class MapNode extends MapDataItem
         if (!$this->labelbgcolour->isNone()) {
             imagefilledrectangle(
                 $nodeImageRef,
-                $labelBox->topLeft->x,
-                $labelBox->topLeft->y,
-                $labelBox->bottomRight->x,
-                $labelBox->bottomRight->y,
+                intval($labelBox->topLeft->x),
+                intval($labelBox->topLeft->y),
+                intval($labelBox->bottomRight->x),
+                intval($labelBox->bottomRight->y),
                 $backgroundColour->gdallocate($nodeImageRef)
             );
         }
@@ -864,19 +864,19 @@ class MapNode extends MapDataItem
         if ($this->selected) {
             imagerectangle(
                 $nodeImageRef,
-                $labelBox->topLeft->x,
-                $labelBox->topLeft->y,
-                $labelBox->bottomRight->x,
-                $labelBox->bottomRight->y,
+                intval($labelBox->topLeft->x),
+                intval($labelBox->topLeft->y),
+                intval($labelBox->bottomRight->x),
+                intval($labelBox->bottomRight->y),
                 $map->selected
             );
             // would be nice if it was thicker, too...
             imagerectangle(
                 $nodeImageRef,
-                $labelBox->topLeft->x - 1,
-                $labelBox->topLeft->y - 1,
-                $labelBox->bottomRight->x + 1,
-                $labelBox->bottomRight->y + 1,
+                intval($labelBox->topLeft->x - 1),
+                intval($labelBox->topLeft->y - 1),
+                intval($labelBox->bottomRight->x + 1),
+                intval($labelBox->bottomRight->y + 1),
                 $map->selected
             );
         } else {
@@ -884,10 +884,10 @@ class MapNode extends MapDataItem
             if ($outlineColour->isRealColour()) {
                 imagerectangle(
                     $nodeImageRef,
-                    $labelBox->topLeft->x,
-                    $labelBox->topLeft->y,
-                    $labelBox->bottomRight->x,
-                    $labelBox->bottomRight->y,
+                    intval($labelBox->topLeft->x),
+                    intval($labelBox->topLeft->y),
+                    intval($labelBox->bottomRight->x),
+                    intval($labelBox->bottomRight->y),
                     $outlineColour->gdAllocate($nodeImageRef)
                 );
             }
@@ -899,8 +899,8 @@ class MapNode extends MapDataItem
         if ($shadowColour->isRealColour()) {
             $fontObject->drawImageString(
                 $nodeImageRef,
-                $textPoint->x + 1,
-                $textPoint->y + 1,
+                intval($textPoint->x + 1),
+                intval($textPoint->y + 1),
                 $this->processedLabel,
                 $shadowColour->gdAllocate($nodeImageRef),
                 $this->labelangle
@@ -919,8 +919,8 @@ class MapNode extends MapDataItem
         }
         $fontObject->drawImageString(
             $nodeImageRef,
-            $textPoint->x,
-            $textPoint->y,
+            intval($textPoint->x),
+            intval($textPoint->y),
             $this->processedLabel,
             $textColour->gdAllocate($nodeImageRef),
             $this->labelangle

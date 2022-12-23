@@ -28,7 +28,7 @@ class GDFont extends Font
 
     public function drawImageString($gdImage, $x, $y, $string, $colour, $angle = 0)
     {
-        imagestring($gdImage, $this->gdnumber, $x, $y - imagefontheight($this->gdnumber), $string, $colour);
+        imagestring($gdImage, $this->gdnumber, intval($x), intval($y - imagefontheight($this->gdnumber)), $string, $colour);
         if ($angle != 0) {
             MapUtility::warn("Angled text doesn't work with non-FreeType fonts [WMWARN02]\n");
         }

@@ -1293,7 +1293,7 @@ class ConfigReader
             if (1 === preg_match('/^(.*)\[([^\]]+)\]$/', $key, $m)) {
                 $index = constant($m[2]);
                 $key = $m[1];
-                $this->currentObject->{$key}[$index] = $val;
+                $this->currentObject->$key[$index] = $val;
                 $this->currentObject->setConfigValue($key . '.' . $index, $val);
             } elseif (substr($key, -1, 1) == '+') {
                 // if the key ends in a plus, it's an array we should append to
