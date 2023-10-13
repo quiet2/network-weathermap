@@ -27,6 +27,8 @@ class MapBase
     protected $descendents = array();
     protected $dependencies = array();
 
+    public $my_default;
+
     public function __construct()
     {
         $this->config = array();
