@@ -26,6 +26,10 @@ class MapItem extends MapBase
     public $zorder;
     protected $descendents = array();
     protected $dependencies = array();
+    public $scaleType = 'percent';
+    public $keystyle = 'classic';
+    public $keyy = '';
+    public $keyx  = '';
 
     public function __construct()
     {

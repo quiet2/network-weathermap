@@ -20,12 +20,25 @@ class MapBase
     public $inheritedFieldList;
     public $imagemapAreas = array();
     public $parent;
-
     public $name;
 
     protected $config = array();
     protected $descendents = array();
     protected $dependencies = array();
+    public $has_overlibs = false;
+    public $has_includes = false;
+    public $mapcache = '';
+    public $cachefolder = 'cached';
+    public $thumb_height = 0;
+    public $thumb_width = 0;
+    public $keyimage = [];
+    public $labelstyle = 'percent';
+    public $rrdtool_check = '';
+    public $dumpconfig = false;
+    public $included_files = [];
+    public $postprocessclasses = [];
+    public $numscales  = ['DEFAULT' => 0];
+
 
     public $my_default;
 

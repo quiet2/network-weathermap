@@ -1378,7 +1378,7 @@ class Map extends MapBase
             $note = str_replace('"', '&quot;', $note);
             $overlibhtml .= $note;
         }
-        $overlibhtml .= "',DELAY,250,${left}${above}CAPTION,'" . $caption . "');\"  onmouseout=\"return nd();\"";
+        $overlibhtml .= "',DELAY,250,{$left}{$above}CAPTION,'" . $caption . "');\"  onmouseout=\"return nd();\"";
 
         return $overlibhtml;
     }
@@ -1839,7 +1839,7 @@ class Map extends MapBase
 
         foreach ($permutations as $name => $items) {
             foreach ($type_perms as $description => $template) {
-                $output .= "\n# ${description} ${name}s:\n";
+                $output .= "\n# {$description} {$name}s:\n";
 
                 foreach ($items as $item) {
                     if (substr($item->name, 0, 3) != ':: ' && ($item->definedIn == $this->configfile)) {
