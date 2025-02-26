@@ -20,6 +20,6 @@ require_once dirname(__FILE__) . '/../vendor/autoload.php';
 use Weathermap\Core\WMDebugFactory;
 
 // Turn on ALL error reporting for now.
-error_reporting(E_ALL | E_STRICT);
+error_reporting(E_ALL);
 
 $wmDebugLogger = WMDebugFactory::create();
