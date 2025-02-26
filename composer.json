@@ -42,5 +42,10 @@
     "psr-4": {
       "Weathermap\\": "lib/Weathermap"
     }
+  },
+  "config": {
+        "allow-plugins": {
+        "dealerdirect/phpcodesniffer-composer-installer": true
+      }
   }
 }
