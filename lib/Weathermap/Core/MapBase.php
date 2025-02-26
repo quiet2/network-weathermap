@@ -20,24 +20,61 @@ class MapBase
     public $inheritedFieldList;
     public $imagemapAreas = array();
     public $parent;
-    public $name;
+    public $name = 'MAP';
 
-    protected $config = array();
-    protected $descendents = array();
-    protected $dependencies = array();
+    public $config = array();
+    public $descendents = array();
+    public $dependencies = array();
     public $has_overlibs = false;
     public $has_includes = false;
+    public $sizedebug = false;
+    public $debugging = false;
+    public $widthmod = false;
     public $mapcache = '';
     public $cachefolder = 'cached';
+
+    public $width = 800;
+    public $height = 600;
+    public $kilo = 1000;
+
     public $thumb_height = 0;
     public $thumb_width = 0;
     public $keyimage = [];
     public $labelstyle = 'percent';
+    public $title = 'Network Weathermap';
     public $rrdtool_check = '';
+    public $context = '';
+    public $background = '';
+    public $imageoutputfile = '';
+    public $imageuri = '';
+    public $htmloutputfile = '';
+    public $dataoutputfile = '';
+    public $htmlstylesheet = '';
     public $dumpconfig = false;
     public $included_files = [];
     public $postprocessclasses = [];
+    public $datasourceclasses = [];
+    public $preprocessclasses = [];
     public $numscales  = ['DEFAULT' => 0];
+    public $keystyle  = ['DEFAULT' => 'classic'];
+    public $keytext  = ['DEFAULT' => 'Traffic Load'];
+    public $keyx  = ['DEFAULT' => -1];
+    public $keyy  = ['DEFAULT' => -1];
+    public $keysize  = ['DEFAULT' => 400];
+    public $stamptext  = 'Created: %b %d %Y %H:%M:%S';
+    public $titlex  = -1;
+    public $titley  = -1;
+    public $keyfont  = 4;
+    public $titlefont  = 2;
+    public $timefont  = 2;
+    public $timex = 0;
+    public $timey = 0;
+    public $mintimex = -10000;
+    public $mintimey = -10000;
+    public $maxtimex = -10000;
+    public $maxtimey = -10000;
+    public $minstamptext = 'Oldest Data: %b %d %Y %H:%M:%S';
+    public $maxstamptext = 'Newest Data: %b %d %Y %H:%M:%S';
 
 
     public $my_default;

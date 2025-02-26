@@ -19,17 +19,12 @@ class MapItem extends MapBase
     public $overlibcaption;
 
     public $definedIn;
-    public $name;
     public $configOverride;    # used by the editor to allow text-editing
     /** @var HTMLImagemapArea[] $imagemapAreas */
     public $imagemapAreas;
     public $zorder;
-    protected $descendents = array();
-    protected $dependencies = array();
     public $scaleType = 'percent';
     public $keystyle = 'classic';
-    public $keyy = '';
-    public $keyx  = '';
 
     public function __construct()
     {
